@@ -1,7 +1,6 @@
 package com.codeshop.project.service;
 
 import java.time.Duration;
-import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -64,10 +63,18 @@ public class PlantServiceImpl implements PlantService {
         repottingPlan.setNextPotSize(plant.getPotSize() * 1.2 + 2);
         Date nextRepotting = Date.from(plant.getLastRepotted().toInstant().plus(Duration.ofDays(330)));
         repottingPlan.setRepottingDay(nextRepotting);
-        // if (plant.getSoilType() == SoilType.ACIDIC)
-        // repottingPlan.setNotes("Buy totally new soil, mix with pellets");
+        switch (plant.getSoilType()) {
+            case ACIDIC:
+            repottingPlan.setNotes("Buy a new soil, mix with pellets.");
+            break;
+            case CLAY:
+            repottingPlan.setNotes("Buy a new soil, repot into wet soil.");
+            break;
+            default:
+            break;
+        }
         repottingPlan.setNotes(
-                "Remember to water a little bit before repotting. Use a spoon to create space in soil for the roots of small plants.");
+                "Remember to water a little bit before repotting. Use a spoon to create space in soil for roots of small plants.");
         return repottingPlan;
     }
 

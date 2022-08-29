@@ -15,40 +15,39 @@ import com.codeshop.project.dto.PlantDTO;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-enum Intensity {
-    NONE,
-    LOW,
-    MEDIUM,
-    HIGH
-}
-
-enum SoilType {
-    SANDY,
-    CLAY,
-    SILTY,
-    PEATY,
-    CHALKY,
-    LOAMY,
-    ACIDIC,
-    BASE,
-    NEUTRAL,
-    MIX
-}
-
-enum Frequency {
-    WEEKLY,
-    BIWEEKLY,
-    DAILY,
-    BIMONTHLY,
-    MONTHLY
-}
-
 @Data
 @Entity
 @Table(name = "PLANT")
 @NoArgsConstructor
 public class Plant {
+
+    public enum SoilType {
+        SANDY,
+        CLAY,
+        SILTY,
+        PEATY,
+        CHALKY,
+        LOAMY,
+        ACIDIC,
+        BASE,
+        NEUTRAL,
+        MIX
+    }
+
+    public enum Intensity {
+        NONE,
+        LOW,
+        MEDIUM,
+        HIGH
+    }
+
+    public enum Frequency {
+        WEEKLY,
+        BIWEEKLY,
+        DAILY,
+        BIMONTHLY,
+        MONTHLY
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

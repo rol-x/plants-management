@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+import com.codeshop.project.model.Plant.*;
+
 
 @SpringBootTest
 public class PlantBuilderTest {
