@@ -1,4 +1,4 @@
-package com.codeshop.project.exception.handler;
+package com.codeshop.plants.exception.handler;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -6,9 +6,9 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-import com.codeshop.project.exception.EntityNotFoundException;
-import com.codeshop.project.exception.ErrorResponse;
-import com.codeshop.project.exception.IncompleteCustomerException;
+import com.codeshop.plants.exception.EntityNotFoundException;
+import com.codeshop.plants.exception.ErrorResponse;
+import com.codeshop.plants.exception.IncompleteCustomerException;
 
 @RestControllerAdvice
 public class RestExceptionHandler extends ResponseEntityExceptionHandler {

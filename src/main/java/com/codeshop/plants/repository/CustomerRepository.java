@@ -1,4 +1,4 @@
-package com.codeshop.project.repository;
+package com.codeshop.plants.repository;
 
 import javax.transaction.Transactional;
 
@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import com.codeshop.project.model.Customer;
+import com.codeshop.plants.model.Customer;
 
 @Repository
 public interface CustomerRepository extends JpaRepository<Customer, Long> {

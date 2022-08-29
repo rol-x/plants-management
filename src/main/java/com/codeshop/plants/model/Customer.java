@@ -1,4 +1,4 @@
-package com.codeshop.project.model;
+package com.codeshop.plants.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -7,7 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import com.codeshop.project.dto.CustomerDTO;
+import com.codeshop.plants.dto.CustomerDTO;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

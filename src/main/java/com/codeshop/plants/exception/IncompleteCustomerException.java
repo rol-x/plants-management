@@ -1,4 +1,4 @@
-package com.codeshop.project.exception;
+package com.codeshop.plants.exception;
 
 public class IncompleteCustomerException extends Exception {
 

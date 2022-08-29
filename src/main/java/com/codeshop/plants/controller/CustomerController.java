@@ -1,4 +1,4 @@
-package com.codeshop.project.controller;
+package com.codeshop.plants.controller;
 
 import java.util.List;
 
@@ -15,11 +15,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.codeshop.project.dto.CustomerDTO;
-import com.codeshop.project.exception.EntityNotFoundException;
-import com.codeshop.project.exception.IncompleteCustomerException;
-import com.codeshop.project.model.Customer;
-import com.codeshop.project.service.CustomerService;
+import com.codeshop.plants.dto.CustomerDTO;
+import com.codeshop.plants.exception.EntityNotFoundException;
+import com.codeshop.plants.exception.IncompleteCustomerException;
+import com.codeshop.plants.model.Customer;
+import com.codeshop.plants.service.CustomerService;
 
 @RestController
 @RequestMapping("customers")

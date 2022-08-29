@@ -1,4 +1,4 @@
-package com.codeshop.project.exception;
+package com.codeshop.plants.exception;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;

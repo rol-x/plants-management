@@ -1,13 +1,13 @@
-package com.codeshop.project.service;
+package com.codeshop.plants.service;
 
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.codeshop.project.dto.PlantDTO;
-import com.codeshop.project.dto.RepottingPlanDTO;
-import com.codeshop.project.exception.EntityNotFoundException;
-import com.codeshop.project.model.Plant;
+import com.codeshop.plants.dto.PlantDTO;
+import com.codeshop.plants.dto.RepottingPlanDTO;
+import com.codeshop.plants.exception.EntityNotFoundException;
+import com.codeshop.plants.model.Plant;
 
 @Service
 public interface PlantService {

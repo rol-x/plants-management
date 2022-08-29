@@ -1,15 +1,15 @@
-package com.codeshop.project.service;
+package com.codeshop.plants.service;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.codeshop.project.dto.CustomerDTO;
-import com.codeshop.project.exception.EntityNotFoundException;
-import com.codeshop.project.exception.IncompleteCustomerException;
-import com.codeshop.project.model.Customer;
-import com.codeshop.project.repository.CustomerRepository;
+import com.codeshop.plants.dto.CustomerDTO;
+import com.codeshop.plants.exception.EntityNotFoundException;
+import com.codeshop.plants.exception.IncompleteCustomerException;
+import com.codeshop.plants.model.Customer;
+import com.codeshop.plants.repository.CustomerRepository;
 
 @Service
 public class CustomerServiceImpl implements CustomerService {

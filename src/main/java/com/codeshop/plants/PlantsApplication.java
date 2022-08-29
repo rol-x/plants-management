@@ -1,13 +1,13 @@
-package com.codeshop.project;
+package com.codeshop.plants;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ProjectApplication {
+public class PlantsApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ProjectApplication.class, args);
+		SpringApplication.run(PlantsApplication.class, args);
 	}
 
 }

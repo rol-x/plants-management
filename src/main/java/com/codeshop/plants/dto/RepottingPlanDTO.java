@@ -1,4 +1,4 @@
-package com.codeshop.project.dto;
+package com.codeshop.plants.dto;
 
 import java.util.Date;
 
