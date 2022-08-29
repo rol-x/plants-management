@@ -7,7 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import com.codeshop.plants.dto.CustomerDTO;
+import com.codeshop.plants.dto.UserDTO;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,8 +17,8 @@ import lombok.NoArgsConstructor;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "CUSTOMER")
-public class Customer {
+@Table(name = "APP_USER")
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,19 +34,19 @@ public class Customer {
     @Column(name = "ADDRESS")
     private String address;
 
-    public Customer(CustomerDTO customer) {
-        this.firstName = customer.getFirstName();
-        this.lastName = customer.getLastName();
-        this.address = customer.getAddress();
+    public User(UserDTO user) {
+        this.firstName = user.getFirstName();
+        this.lastName = user.getLastName();
+        this.address = user.getAddress();
     }
 
-    public Customer(String firstName, String lastName, String address) {
+    public User(String firstName, String lastName, String address) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.address = address;
     }
 
-    public Customer(String name, String address) {
+    public User(String name, String address) {
         String[] names = name.split(" ");
         this.firstName = names[0];
         if (names.length > 1) {

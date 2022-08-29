@@ -30,8 +30,8 @@ public class PlantController {
     private PlantService plantService;
 
     @GetMapping("{id}")
-    public Plant getPlantById(@PathVariable("id") Long customerId) throws EntityNotFoundException {
-        return plantService.getPlant(customerId);
+    public Plant getPlantById(@PathVariable("id") Long userId) throws EntityNotFoundException {
+        return plantService.getPlant(userId);
     }
 
     @GetMapping("/search")

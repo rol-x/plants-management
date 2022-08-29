@@ -8,7 +8,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 import com.codeshop.plants.exception.EntityNotFoundException;
 import com.codeshop.plants.exception.ErrorResponse;
-import com.codeshop.plants.exception.IncompleteCustomerException;
+import com.codeshop.plants.exception.IncompleteUserException;
 
 @RestControllerAdvice
 public class RestExceptionHandler extends ResponseEntityExceptionHandler {
@@ -19,9 +19,9 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
         return new ErrorResponse(HttpStatus.NOT_FOUND, exception);
     }
 
-    @ExceptionHandler(IncompleteCustomerException.class)
+    @ExceptionHandler(IncompleteUserException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public ErrorResponse handleIncompleteCustomerException(IncompleteCustomerException exception) {
+    public ErrorResponse handleIncompleteUserException(IncompleteUserException exception) {
         return new ErrorResponse(HttpStatus.BAD_REQUEST, exception);
     }
 
