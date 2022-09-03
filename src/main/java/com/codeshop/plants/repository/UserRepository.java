@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import com.codeshop.plants.model.Address;
 import com.codeshop.plants.model.User;
 
 @Repository
@@ -25,5 +26,5 @@ public interface UserRepository extends JpaRepository<User, Long> {
     @Modifying
     @Transactional
     @Query("UPDATE User SET address = :address WHERE id = :id")
-    public void updateAddress(Long id, String address);
+    public void updateAddress(Long id, Address address);
 }

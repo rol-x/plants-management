@@ -10,5 +10,7 @@ public class UserDTO {
 
     private String firstName;
     private String lastName;
-    private String address;
+    private String street;
+    private String city;
+    private String postalCode;
 }
