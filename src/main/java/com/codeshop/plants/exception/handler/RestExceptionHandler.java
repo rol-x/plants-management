@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import com.codeshop.plants.exception.EntityNotFoundException;
-import com.codeshop.plants.exception.ErrorResponse;
 import com.codeshop.plants.exception.IncompleteUserException;
 
 @RestControllerAdvice
