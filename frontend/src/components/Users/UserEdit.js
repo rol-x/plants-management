@@ -90,7 +90,6 @@ const UserEdit = () => {
     <Container>
       {title}
       <Form onSubmit={handleSubmit}>
-        {/* TODO: This is not working! First and last name */}
         <FormGroup>
           <Label for="firstName">First name</Label>
           <Input type="text" name="firstName" id="firstName" value={user.firstName || ''}
