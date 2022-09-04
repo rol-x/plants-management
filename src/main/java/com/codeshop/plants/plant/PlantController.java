@@ -1,4 +1,4 @@
-package com.codeshop.plants.controller;
+package com.codeshop.plants.plant;
 
 import java.util.List;
 
@@ -16,11 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.codeshop.plants.dto.PlantDTO;
-import com.codeshop.plants.dto.RepottingPlanDTO;
 import com.codeshop.plants.exception.EntityNotFoundException;
-import com.codeshop.plants.model.Plant;
-import com.codeshop.plants.service.PlantService;
+import com.codeshop.plants.repottingplan.RepottingPlanDTO;
 
 @RestController
 @RequestMapping("plants")
@@ -49,7 +46,7 @@ public class PlantController {
         Plant savedPlant = plantService.addPlant(plantDto);
         return ResponseEntity
                 .status(HttpStatus.CREATED)
-                .header("Content-Location", "/users/" + savedPlant.getId().toString())
+                .header("Content-Location", "/plants/" + savedPlant.getId().toString())
                 .body(savedPlant);
     }
 

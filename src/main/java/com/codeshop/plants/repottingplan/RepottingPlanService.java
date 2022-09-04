@@ -1,12 +1,11 @@
-package com.codeshop.plants.service;
+package com.codeshop.plants.repottingplan;
 
 import java.time.Duration;
 import java.util.Date;
 
 import org.springframework.stereotype.Service;
 
-import com.codeshop.plants.dto.RepottingPlanDTO;
-import com.codeshop.plants.model.Plant;
+import com.codeshop.plants.plant.Plant;
 
 @Service
 public class RepottingPlanService {

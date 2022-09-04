@@ -1,4 +1,4 @@
-package com.codeshop.plants.dto;
+package com.codeshop.plants.user;
 
 import org.springframework.stereotype.Component;
 

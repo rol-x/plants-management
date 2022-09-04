@@ -1,16 +1,15 @@
-package com.codeshop.plants.service;
+package com.codeshop.plants.plant;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.codeshop.plants.dto.PlantDTO;
-import com.codeshop.plants.dto.RepottingPlanDTO;
 import com.codeshop.plants.exception.EntityNotFoundException;
 import com.codeshop.plants.exception.IncompletePlantException;
-import com.codeshop.plants.model.Plant;
-import com.codeshop.plants.repository.PlantRepository;
+import com.codeshop.plants.repottingplan.RepottingPlanDTO;
+import com.codeshop.plants.repottingplan.RepottingPlanService;
+import com.codeshop.plants.validation.RequestValidationService;
 
 @Service
 public class PlantServiceImpl implements PlantService {
@@ -75,7 +74,6 @@ public class PlantServiceImpl implements PlantService {
         plantRepository.deleteById(plantId);
     }
 
-    // TODO: Move this to another class
     @Override
     public RepottingPlanDTO getRepottingPlan(Long plantId) throws EntityNotFoundException {
         Plant plant = getPlant(plantId);

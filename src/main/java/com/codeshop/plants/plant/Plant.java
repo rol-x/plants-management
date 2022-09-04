@@ -1,4 +1,4 @@
-package com.codeshop.plants.model;
+package com.codeshop.plants.plant;
 
 import java.util.Date;
 
@@ -10,8 +10,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
-import com.codeshop.plants.dto.PlantDTO;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

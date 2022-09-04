@@ -1,17 +1,15 @@
-package com.codeshop.plants.service;
+package com.codeshop.plants.user;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.codeshop.plants.dto.UserDTO;
+import com.codeshop.plants.address.Address;
+import com.codeshop.plants.address.AddressRepository;
 import com.codeshop.plants.exception.EntityNotFoundException;
 import com.codeshop.plants.exception.IncompleteUserException;
-import com.codeshop.plants.model.Address;
-import com.codeshop.plants.model.User;
-import com.codeshop.plants.repository.AddressRepository;
-import com.codeshop.plants.repository.UserRepository;
+import com.codeshop.plants.validation.RequestValidationService;
 
 @Service
 public class UserServiceImpl implements UserService {

@@ -1,11 +1,11 @@
-package com.codeshop.plants.service;
+package com.codeshop.plants.validation;
 
 import org.springframework.stereotype.Service;
 
-import com.codeshop.plants.dto.PlantDTO;
-import com.codeshop.plants.dto.UserDTO;
-import com.codeshop.plants.model.Plant.Frequency;
-import com.codeshop.plants.model.Plant.Intensity;
+import com.codeshop.plants.plant.PlantDTO;
+import com.codeshop.plants.plant.Plant.Frequency;
+import com.codeshop.plants.plant.Plant.Intensity;
+import com.codeshop.plants.user.UserDTO;
 
 @Service
 public class RequestValidationService {

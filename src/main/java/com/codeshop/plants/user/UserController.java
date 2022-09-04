@@ -1,4 +1,4 @@
-package com.codeshop.plants.controller;
+package com.codeshop.plants.user;
 
 import java.util.List;
 
@@ -15,10 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.codeshop.plants.dto.UserDTO;
 import com.codeshop.plants.exception.EntityNotFoundException;
-import com.codeshop.plants.model.User;
-import com.codeshop.plants.service.UserService;
 
 @RestController
 @RequestMapping("users")

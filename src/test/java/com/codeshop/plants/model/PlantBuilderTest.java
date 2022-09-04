@@ -5,7 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.codeshop.plants.model.Plant.*;
+import com.codeshop.plants.plant.Plant;
+import com.codeshop.plants.plant.Plant.*;
 
 
 @SpringBootTest
