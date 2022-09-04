@@ -43,10 +43,4 @@ public class User {
         this.lastName = user.getLastName();
         this.address = address;
     }
-
-    public User(UserDTO user) {
-        this.firstName = user.getFirstName();
-        this.lastName = user.getLastName();
-        this.address = null;
-    }
 }

@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.codeshop.plants.dto.UserDTO;
 import com.codeshop.plants.exception.EntityNotFoundException;
-import com.codeshop.plants.exception.IncompleteUserException;
 import com.codeshop.plants.model.User;
 import com.codeshop.plants.service.UserService;
 
@@ -39,16 +38,16 @@ public class UserController {
     }
 
     @PostMapping("")
-    public ResponseEntity<User> addUser(@RequestBody UserDTO userDto)
-            throws IncompleteUserException {
-                User savedUser = userService.addUser(userDto);
-        return ResponseEntity.status(HttpStatus.CREATED)
-                .header("Content-Location", "/users/" + savedUser.getId().toString()).body(savedUser);
+    public ResponseEntity<User> addUser(@RequestBody UserDTO userDto) {
+        User savedUser = userService.addUser(userDto);
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .header("Content-Location", "/users/" + savedUser.getId().toString())
+                .body(savedUser);
     }
 
     @PutMapping("/{id}")
-    public User updateUser(@PathVariable("id") Long id, @RequestBody UserDTO userDto)
-            throws EntityNotFoundException, IncompleteUserException {
+    public User updateUser(@PathVariable("id") Long id, @RequestBody UserDTO userDto) throws EntityNotFoundException {
         return userService.updateUser(id, userDto);
     }
 
@@ -59,8 +58,7 @@ public class UserController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<User> deleteUser(@PathVariable("id") Long id)
-            throws EntityNotFoundException {
+    public ResponseEntity<User> deleteUser(@PathVariable("id") Long id) throws EntityNotFoundException {
         userService.deleteUser(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }

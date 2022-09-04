@@ -36,59 +36,49 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User addUser(UserDTO userDto) throws IncompleteUserException {
+    public User addUser(UserDTO userDto) {
         validateRequestFormat(userDto);
-
-        // Don't save empty Address object when no address data is provided
-        if (requestValidationService.userDtoAddressEmpty(userDto))
-            return userRepository.save(new User(userDto));
-        else {
-            Address address = addressRepository.save(new Address(userDto));
-            return userRepository.save(new User(userDto, address));
-        }
+        Address address = addressRepository.save(new Address(userDto));
+        return userRepository.save(new User(userDto, address));
     }
 
     @Override
-    public User updateUser(Long userId, UserDTO userDto) throws EntityNotFoundException, IncompleteUserException {
+    public User updateUser(Long userId, UserDTO userDto) throws EntityNotFoundException {
         validateRequestFormat(userDto);
 
         User user = getUser(userId);
         user.setFirstName(userDto.getFirstName());
         user.setLastName(userDto.getLastName());
 
-        // Update or create the Address object only when address data is provided
-        if (!requestValidationService.userDtoAddressEmpty(userDto)) {
-            Address address = user.getAddress() == null ? new Address() : user.getAddress();
-            address.setStreet(userDto.getStreet());
-            address.setCity(userDto.getCity());
-            address.setPostalCode(userDto.getPostalCode());
-            addressRepository.save(address);
-            user.setAddress(address);
-        }
+        Address address = user.getAddress();
+        address.setStreet(userDto.getStreet());
+        address.setCity(userDto.getCity());
+        address.setPostalCode(userDto.getPostalCode());
+
+        addressRepository.save(address);
+        user.setAddress(address);
         return userRepository.save(user);
     }
 
     @Override
     public User partiallyUpdateUser(Long userId, UserDTO userDto) throws EntityNotFoundException {
-        // Update only the attributes present in the request
         User user = getUser(userId);
+        Address address = user.getAddress();
+
+        // Update only the attributes present in the request
         if (userDto.getFirstName() != null)
             user.setFirstName(userDto.getFirstName());
         if (userDto.getLastName() != null)
             user.setLastName(userDto.getLastName());
+        if (userDto.getStreet() != null)
+            address.setStreet(userDto.getStreet());
+        if (userDto.getCity() != null)
+            address.setCity(userDto.getCity());
+        if (userDto.getPostalCode() != null)
+            address.setPostalCode(userDto.getPostalCode());
 
-        // Update or create the Address object only when some address data is provided
-        if (requestValidationService.userDtoAddressProvided(userDto)) {
-            Address address = user.getAddress() == null ? new Address() : user.getAddress();
-            if (userDto.getStreet() != null)
-                address.setStreet(userDto.getStreet());
-            if (userDto.getCity() != null)
-                address.setCity(userDto.getCity());
-            if (userDto.getPostalCode() != null)
-                address.setPostalCode(userDto.getPostalCode());
-            addressRepository.save(address);
-            user.setAddress(address);
-        }
+        addressRepository.save(address);
+        user.setAddress(address);
         return userRepository.save(user);
     }
 
@@ -97,7 +87,7 @@ public class UserServiceImpl implements UserService {
         if (userRepository.findById(userId).isEmpty())
             throw new EntityNotFoundException();
 
-        // Address entity deletion is handled automatically via @OneToOne annotation
+        // Address deletion is handled automatically via @OneToOne annotation
         userRepository.deleteById(userId);
     }
 
