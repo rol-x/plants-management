@@ -95,5 +95,4 @@ public class UserServiceImpl implements UserService {
         if (requestValidationService.userDtoIncomplete(userDto))
             throw new IncompleteUserException();
     }
-
 }

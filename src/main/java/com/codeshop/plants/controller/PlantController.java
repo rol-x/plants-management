@@ -30,8 +30,8 @@ public class PlantController {
     private PlantService plantService;
 
     @GetMapping("{id}")
-    public Plant getPlantById(@PathVariable("id") Long userId) throws EntityNotFoundException {
-        return plantService.getPlant(userId);
+    public Plant getPlant(@PathVariable("id") Long id) throws EntityNotFoundException {
+        return plantService.getPlant(id);
     }
 
     @GetMapping("/search")
@@ -47,25 +47,28 @@ public class PlantController {
     @PostMapping("")
     public ResponseEntity<Plant> addPlant(@RequestBody PlantDTO plantDto) {
         Plant savedPlant = plantService.addPlant(plantDto);
-        return ResponseEntity.status(HttpStatus.CREATED)
-                .header("Content-Location", "/users/" + savedPlant.getId().toString()).body(savedPlant);
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .header("Content-Location", "/users/" + savedPlant.getId().toString())
+                .body(savedPlant);
     }
 
+    // TODO: Make sure only complete requests are fulfilled
     @PutMapping("/{id}")
-    public Plant updatePlant(@PathVariable("id") Long plantId, @RequestBody PlantDTO plantDto) {
-        return plantService.updatePlant(plantId, plantDto);
+    public Plant updatePlant(@PathVariable("id") Long id, @RequestBody PlantDTO plantDto)
+            throws EntityNotFoundException {
+        return plantService.updatePlant(id, plantDto);
     }
 
     @PatchMapping("/{id}")
-    public Plant partiallyUpdatePlant(@PathVariable("id") Long plantId, @RequestBody PlantDTO plantDto)
+    public Plant partiallyUpdatePlant(@PathVariable("id") Long id, @RequestBody PlantDTO plantDto)
             throws EntityNotFoundException {
-        return plantService.partiallyUpdatePlant(plantId, plantDto);
+        return plantService.partiallyUpdatePlant(id, plantDto);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Plant> deletePlant(@PathVariable("id") Long plantId)
-            throws EntityNotFoundException {
-        plantService.removePlant(plantId);
+    public ResponseEntity<Plant> deletePlant(@PathVariable("id") Long id) throws EntityNotFoundException {
+        plantService.deletePlant(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 

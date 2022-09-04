@@ -20,11 +20,11 @@ public interface PlantService {
 
     public Plant addPlant(PlantDTO plantDto);
 
-    public Plant updatePlant(Long id, PlantDTO plantDto);
+    public Plant updatePlant(Long id, PlantDTO plantDto) throws EntityNotFoundException;
 
-    public Plant partiallyUpdatePlant(Long id, PlantDTO plantDto);
+    public Plant partiallyUpdatePlant(Long id, PlantDTO plantDto) throws EntityNotFoundException;
 
-    public void removePlant(Long id);
+    public void deletePlant(Long id) throws EntityNotFoundException;
 
     public RepottingPlanDTO getRepottingPlan(Long id) throws EntityNotFoundException;
 }

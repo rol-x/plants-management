@@ -11,6 +11,7 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import com.codeshop.plants.exception.EntityNotFoundException;
+import com.codeshop.plants.exception.IncompletePlantException;
 import com.codeshop.plants.exception.IncompleteUserException;
 
 @RestControllerAdvice
@@ -25,6 +26,12 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(IncompleteUserException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ErrorResponse handleIncompleteUserException(IncompleteUserException exception) {
+        return new ErrorResponse(HttpStatus.BAD_REQUEST, exception);
+    }
+
+    @ExceptionHandler(IncompletePlantException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ErrorResponse handleIncompletePlantException(IncompletePlantException exception) {
         return new ErrorResponse(HttpStatus.BAD_REQUEST, exception);
     }
 

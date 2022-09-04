@@ -7,9 +7,9 @@ public class IncompleteUserException extends RuntimeException {
         {
             firstName: string,
             lastName: string,
-            street: string,
-            city: string,
-            postalCode: string
+            street: (string),
+            city: (string),
+            postalCode: (string)
         }
         """;
 

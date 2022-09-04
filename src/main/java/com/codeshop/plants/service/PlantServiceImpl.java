@@ -1,7 +1,5 @@
 package com.codeshop.plants.service;
 
-import java.time.Duration;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.codeshop.plants.dto.PlantDTO;
 import com.codeshop.plants.dto.RepottingPlanDTO;
 import com.codeshop.plants.exception.EntityNotFoundException;
+import com.codeshop.plants.exception.IncompletePlantException;
 import com.codeshop.plants.model.Plant;
 import com.codeshop.plants.repository.PlantRepository;
 
@@ -19,9 +18,12 @@ public class PlantServiceImpl implements PlantService {
     @Autowired
     PlantRepository plantRepository;
 
+    @Autowired
+    RequestValidationService requestValidationService;
+
     @Override
-    public Plant getPlant(Long id) throws EntityNotFoundException {
-        return plantRepository.findById(id).orElseThrow(EntityNotFoundException::new);
+    public Plant getPlant(Long plantId) throws EntityNotFoundException {
+        return plantRepository.findById(plantId).orElseThrow(EntityNotFoundException::new);
     }
 
     @Override
@@ -36,46 +38,52 @@ public class PlantServiceImpl implements PlantService {
 
     @Override
     public Plant addPlant(PlantDTO plantDto) {
+        validateRequestFormat(plantDto);
         return plantRepository.save(new Plant(plantDto));
     }
 
     @Override
-    public Plant updatePlant(Long id, PlantDTO plantDto) {
-        plantRepository.updateName(id, plantDto.getName());
-        return plantRepository.findById(id).orElse(null);
+    public Plant updatePlant(Long plantId, PlantDTO plantDto) throws EntityNotFoundException {
+        validateRequestFormat(plantDto);
+
+        Plant plant = getPlant(plantId);
+        plant.setName(plantDto.getName());
+        // ... etc
+        // TODO: Move all these updates to Plant class?
+
+        return plantRepository.save(plant);
     }
 
     @Override
-    public Plant partiallyUpdatePlant(Long id, PlantDTO plantDto) {
-        plantRepository.updateName(id + 1 - 1, plantDto.getName());
-        return plantRepository.findById(id).orElse(null);
+    public Plant partiallyUpdatePlant(Long plantId, PlantDTO plantDto) throws EntityNotFoundException {
+        Plant plant = getPlant(plantId);
+
+        // Update only the attributes present in the request
+        if (plantDto.getName() != null)
+            plant.setName(plantDto.getName());
+        // ... etc
+        // TODO: Move all these updates to Plant as well?
+
+        return plantRepository.save(plant);
     }
 
     @Override
-    public void removePlant(Long id) {
-        plantRepository.deleteById(id);
+    public void deletePlant(Long plantId) throws EntityNotFoundException {
+        if (plantRepository.findById(plantId).isEmpty())
+            throw new EntityNotFoundException();
+
+        plantRepository.deleteById(plantId);
     }
 
+    // TODO: Move this to another class
     @Override
-    public RepottingPlanDTO getRepottingPlan(Long id) throws EntityNotFoundException {
-        Plant plant = plantRepository.findById(id).orElseThrow(EntityNotFoundException::new);
-        RepottingPlanDTO repottingPlan = new RepottingPlanDTO();
-        repottingPlan.setNextPotSize(plant.getPotSize() * 1.2 + 2);
-        Date nextRepotting = Date.from(plant.getLastRepotted().toInstant().plus(Duration.ofDays(330)));
-        repottingPlan.setRepottingDay(nextRepotting);
-        switch (plant.getSoilType()) {
-            case ACIDIC:
-            repottingPlan.setNotes("Buy a new soil, mix with pellets.");
-            break;
-            case CLAY:
-            repottingPlan.setNotes("Buy a new soil, repot into wet soil.");
-            break;
-            default:
-            break;
-        }
-        repottingPlan.setNotes(
-                "Remember to water a little bit before repotting. Use a spoon to create space in soil for roots of small plants.");
-        return repottingPlan;
+    public RepottingPlanDTO getRepottingPlan(Long plantId) throws EntityNotFoundException {
+        Plant plant = getPlant(plantId);
+        return RepottingPlanService.getRepottingPlan(plant);
     }
 
+    private void validateRequestFormat(PlantDTO plantDto) {
+        if (requestValidationService.plantDtoIncomplete(plantDto))
+            throw new IncompletePlantException();
+    }
 }

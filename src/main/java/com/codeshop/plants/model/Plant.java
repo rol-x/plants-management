@@ -42,11 +42,12 @@ public class Plant {
     }
 
     public enum Frequency {
+        MONTHLY,
+        BIMONTHLY,
         WEEKLY,
         BIWEEKLY,
-        DAILY,
-        BIMONTHLY,
-        MONTHLY
+        TRIWEEKLY,
+        DAILY
     }
 
     @Id
