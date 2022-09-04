@@ -7,7 +7,11 @@ const UserEdit = () => {
   const initialFormState = {
     firstName: '',
     lastName: '',
-    address: ''
+    address: {
+      street: '',
+      city: '',
+      postalCode: ''
+    }
   };
 
   const [user, setUser] = useState(initialFormState);
@@ -61,20 +65,21 @@ const UserEdit = () => {
                    onChange={handleChange} autoComplete="lastName"/>
           </FormGroup>
           <div className="row">
+            {/* TODO: This is not working! */}
             <FormGroup className="col-md-4 mb-3">
               <Label for="stateOrProvince">Street</Label>
               <Input type="text" name="street" id="street" value={user.address.street || ''}
-                     onChange={handleChange} autoComplete="address-level1"/>
+                     onChange={handleChange} autoComplete="street"/>
             </FormGroup>
             <FormGroup className="col-md-5 mb-3">
               <Label for="country">City</Label>
               <Input type="text" name="city" id="city" value={user.address.city || ''}
-                     onChange={handleChange} autoComplete="address-level1"/>
+                     onChange={handleChange} autoComplete="city"/>
             </FormGroup>
             <FormGroup className="col-md-3 mb-3">
               <Label for="country">Postal Code</Label>
               <Input type="text" name="postalCode" id="postalCode" value={user.address.postalCode || ''}
-                     onChange={handleChange} autoComplete="address-level1"/>
+                     onChange={handleChange} autoComplete="postalCode"/>
             </FormGroup>
           </div>
           <FormGroup>

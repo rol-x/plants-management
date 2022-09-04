@@ -37,10 +37,9 @@ const UserList = () => {
   }
 
   const userList = users.map(user => {
-    const address = `${user.address || ''}`;
     return <tr key={user.id}>
       <td style={{whiteSpace: 'nowrap'}}>{user.firstName} {user.lastName}</td>
-      <td>{address}</td>
+      <td>{user.address.street}, {user.address.city} {user.address.postalCode}</td>
       <td>
         <ButtonGroup>
           <Button size="sm" color="primary" tag={Link} to={"/users/" + user.id}>Edit</Button>
