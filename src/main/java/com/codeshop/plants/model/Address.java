@@ -7,6 +7,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.codeshop.plants.dto.UserDTO;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,19 +24,19 @@ public class Address {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "STREET", nullable = false)
+    @Column(name = "STREET")
     private String street;
 
-    @Column(name = "CITY", nullable = false)
+    @Column(name = "CITY")
     private String city;
 
-    @Column(name = "POSTAL_CODE", nullable = false)
+    @Column(name = "POSTAL_CODE")
     private String postalCode;
 
-    public Address(String street, String city, String postalCode) {
-        this.street = street;
-        this.city = city;
-        this.postalCode = postalCode;
+    public Address(UserDTO userDto) {
+        this.street = userDto.getStreet();
+        this.city = userDto.getCity();
+        this.postalCode = userDto.getPostalCode();
     }
 
 }
